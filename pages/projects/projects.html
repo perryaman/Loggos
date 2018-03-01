@@ -1,0 +1,117 @@
+<!--
+  Generated template for the ProjectsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Projects</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div col-lg-10 style="margin: 0 auto">
+  
+<div *ngIf="(userInfo | async)?.role == 'strategist'; then forStrategist else forAllUsers "> </div>
+
+<ng-template #forStrategist>
+  <ion-card>
+    <ion-card-header>RECENT PROJECTS
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list *ngIf="projects">
+        
+        <button ion-item *ngFor="let project of projects | async" (click)="openProjectPage(project.$key)">
+          <h2>{{ project.name }}</h2>
+          <p>{{ project.timestamp | date: 'mediumDate' }} . <span text-uppercase>{{project.package}}</span></p>
+          
+          <hr/>
+        </button>  
+      </ion-list>
+      <button ion-button block icon-left  [navPush]="projectsPage" >
+        <ion-icon name='share-alt'></ion-icon>
+        All Projects
+      </button>
+      <!--<button ion-button icon-left block [navPush]="notificationsPage" disabled>
+        <ion-icon name="mail"></ion-icon>
+        View all Projects
+      </button>        -->
+    </ion-card-content>
+  </ion-card>
+  
+</ng-template>
+
+<ng-template #forAllUsers>
+
+        <div *ngIf="(projects | async)?.length >0  ; then showProjects else noProjects"></div> 
+        <ng-template #noProjects>
+          
+          <div padding class="no-projects" text-center>
+              <p><ion-icon name="sad" ></ion-icon></p>
+              <h3>No Projects</h3>
+              <p>Looks like you don't have any projects.</p>
+            
+              <div *ngIf="(userInfo | async)?.role == 'client' "> 
+                <p>You can create one now.</p>
+                <button ion-button  icon-left  (click)="createNewProject();" >
+                  <ion-icon name='add'></ion-icon>
+                  Create new project
+                </button>
+              </div>
+
+              <div *ngIf="(userInfo | async)?.role == 'designer' "> 
+                  <p>While you wait to be hired for a project, check out some tutorials.</p>
+                  <div class="card-with-bg">
+                      <ion-card >
+                        <img src="assets/img/home-tutorials3.png"/>
+                        <div class="card-title">Design Tuorials</div>
+                        <div class="card-subtitle">Discover our free design tutorials</div>
+                      </ion-card>
+                    </div>                
+              </div>              
+              
+          </div>
+  
+        </ng-template>
+
+        <ng-template #showProjects>
+            <div padding><span style="color:#737373; font-weight:bold;">YOUR PROJECTS</span>
+            </div>
+                <a href="#"><ion-card (click)="openProjectPage(project.$key)" *ngFor="let project of projects | async" >
+                
+                <ion-card-content>
+                  <p style="color:green; font-size:.9em;">ONGOING</p>
+                     <p style="font-size: 1.2em; font-weight:bold"> {{project.name}}</p>
+                    <p >
+                      This is a {{project.package}} package project
+                    </p>
+
+                      <!--<button ion-button icon-left>
+                        <ion-icon name='share-alt'></ion-icon>
+                        Open Project
+                      </button>-->
+                </ion-card-content>
+
+                </ion-card>
+                </a>
+
+                 <div class="text-center" padding>
+                  <button ion-button  icon-left  (click)="createNewProject();" >
+                    <ion-icon name='add'></ion-icon>
+                    Create new project
+                  </button>
+                 </div>
+                
+
+            
+    
+        </ng-template>
+
+</ng-template>
+
+  </div>
+</ion-content>

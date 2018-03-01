@@ -1,0 +1,82 @@
+<!--
+  Generated template for the DesignerQtnPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      Signup as Client
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div col-lg-10 style="margin: 0 auto">
+
+   <div padding>
+        <h1>Signup</h1>
+    <h5 >STEP 2 OF 2</h5>
+    <p>Please enter your company info.</p>  
+  </div>
+
+<ion-card>
+      <ion-card-content>    
+          <form [formGroup]="companyProfileForm" (submit)="saveCompanyProfile()" novalidate>
+
+            <ion-item>
+              <ion-label stacked>Company</ion-label>
+              <ion-input formControlName="name" type="text" placeholder="Your Company name"
+                [class.invalid]="!companyProfileForm.controls.name.valid && companyProfileForm.controls.name.dirty"></ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!companyProfileForm.controls.name.valid  && companyProfileForm.controls.name.dirty">
+              <p>Please enter a valid name.</p>
+            </ion-item>
+
+            <!--<ion-item>
+              <ion-label stacked>Mobile Money Number</ion-label>
+              <ion-input formControlName="mmNumber" type="telephone" placeholder="Your telephone number"
+                [class.invalid]="!companyProfileForm.controls.mmNumber.valid && companyProfileForm.controls.mmNumber.dirty"></ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!companyProfileForm.controls.mmNumber.valid  && companyProfileForm.controls.mmNumber.dirty">
+              <p>Please enter a valid phone number.</p>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked>Bank Name</ion-label>
+              <ion-input formControlName="bankName" type="text" placeholder="Name of your bank"
+                [class.invalid]="!companyProfileForm.controls.bankName.valid && companyProfileForm.controls.bankName.dirty"></ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!companyProfileForm.controls.bankName.valid  && companyProfileForm.controls.bankName.dirty">
+              <p>Please enter a valid Bank name.</p>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked>Account Name</ion-label>
+              <ion-input formControlName="accName" type="text" placeholder="Your account name"
+                [class.invalid]="!companyProfileForm.controls.accName.valid && companyProfileForm.controls.accName.dirty"></ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!companyProfileForm.controls.accName.valid  && companyProfileForm.controls.accName.dirty">
+              <p>Please enter a valid account name.</p>
+            </ion-item>
+
+            <ion-item>
+              <ion-label stacked>Account Number</ion-label>
+              <ion-input formControlName="accNumber" type="text" placeholder="Your account number"
+                [class.invalid]="!companyProfileForm.controls.accNumber.valid && companyProfileForm.controls.accNumber.dirty"></ion-input>
+            </ion-item>
+            <ion-item class="error-message" *ngIf="!companyProfileForm.controls.accNumber.valid  && companyProfileForm.controls.accNumber.dirty">
+              <p>Please enter a valid account number.</p>
+            </ion-item>-->
+
+            <button ion-button large type="submit">
+              Save Your Info
+            </button>
+
+          </form>
+      </ion-card-content>
+</ion-card> 
+  </div>
+</ion-content>

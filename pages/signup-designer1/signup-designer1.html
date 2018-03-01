@@ -1,0 +1,61 @@
+<!--
+  Generated template for the DesignerQtnPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <ion-title>
+      Signup as Designer
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+
+  <div padding>
+    <h5 >STEP 1 OF 2</h5>
+    <p>Please enter your profile info.</p>  
+  </div>
+
+  <ion-card>
+    <ion-card-content>    
+
+      <form [formGroup]="userProfileForm" (submit)="saveUserProfile()" novalidate>
+
+        <ion-item>
+          <ion-label stacked>Name: </ion-label>
+          <ion-input formControlName="name" type="text" placeholder="Your full name" value="{{user.displayName}}"
+            [class.invalid]="!userProfileForm.controls.name.valid && userProfileForm.controls.name.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!userProfileForm.controls.name.valid  && userProfileForm.controls.name.dirty">
+          <p>Your name is too short.</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Email: </ion-label>
+          <ion-input formControlName="email" type="email" placeholder="Your email address" disabled  value="{{user.email}}"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Tel: </ion-label>
+          <ion-input formControlName="tel" type="tel" placeholder="Your phone number" value="{{(user|async)?.tel}}"
+            [class.invalid]="!userProfileForm.controls.tel.valid && userProfileForm.controls.tel.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!userProfileForm.controls.tel.valid  && userProfileForm.controls.tel.dirty">
+          <p>Your number is too short.</p>
+        </ion-item>
+
+        <button block ion-button icon-right padding type="submit">
+          Save and Continue
+          <ion-icon name="arrow-forward"></ion-icon> 
+        </button>
+
+      </form>
+
+    </ion-card-content>
+  </ion-card>
+ 
+</ion-content>

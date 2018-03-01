@@ -1,0 +1,128 @@
+<!--
+  Generated template for the ProjectPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{(project)?.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+      <div class="info">
+        <div class="title">{{(project)?.name}}</div>
+
+       <div class="progress">
+        <div class="progress-inner">
+        <div class="c100 p20">
+          <span><b>20</b><small>%</small></span>
+          <span class="complete"><small class="extra-small">COMPLETE</small></span>
+          <div class="slice">
+            <div class="bar"></div>
+            <div class="fll"></div>
+          </div>
+        </div>
+        </div>
+
+       </div>
+
+        <div class="light">STARTED: {{(project)?.timestamp | date: 'short'}}</div>
+      </div>
+
+<div *ngIf="(user | async)?.role == 'strategist'" class="strategist-info">
+  <ion-card >
+    <ion-card-header>
+      <small>ADMIN INFO</small>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+
+              <ion-row>
+                <ion-col col-5>Comany: </ion-col><ion-col col-7>{{projectInfo.company}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5>Client: </ion-col><ion-col col-7>{{projectInfo.client}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-5>Designer: </ion-col>
+                <ion-col col-7>
+                  <button *ngIf="!project.designer;else designer" ion-button small (click)="addDesigner()">Add Designer</button>
+                  <ng-template #designer>
+                    <a (click)="quickViewProfile(project.designer)" >{{projectInfo.designer}}</a> 
+                  </ng-template>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col col-5>Copywriter: </ion-col>
+                        <ion-col col-7>
+                  <button *ngIf="!project.copywriter;else copywriter" ion-button small (click)="addCopywriter()">Add copywriter</button>
+                  <ng-template #copywriter>
+                    <a (click)="quickViewProfile(project.copywriter)" >{{projectInfo.copywriter}}</a> 
+                  </ng-template>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col col-5>Strategist: </ion-col>
+                  <ion-col col-7>
+                    <button *ngIf="!project.strategist;else strategist" ion-button small (click)="addStrategist()">Add Strategist</button>
+                    <ng-template #strategist>
+                      <a (click)="quickViewProfile(project.strategist)" >{{projectInfo.strategist}}</a> 
+                    </ng-template>
+                  </ion-col>
+              </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</div>
+
+<div col-lg-10 style="margin: 0 auto">
+<ion-card>
+<!--<ion-card-header>
+  PROJECT PROGRESS
+</ion-card-header>-->
+    <ion-card-content>
+     <ion-list *ngIf="stages">
+
+      <button *ngFor="let stage of stages | async" ion-item (click)="openProjectStagePage((stage)?.$key)">
+          <div *ngIf="!(stage)?.endDate && !(stage)?.startDate; then pending"></div>
+          <div *ngIf="(stage)?.endDate && !(stage)?.startDate; then ongoing"></div>
+          <div *ngIf="(stage)?.endDate && (stage)?.startDate; then complete"></div>
+              
+          <ng-template #complete>
+            <ion-icon item-start name="checkmark" color="secondary"></ion-icon>
+            <ion-note color="secondary"><small>COMPLETED</small></ion-note>
+            <h2>{{(stage)?.stage}}</h2>
+            <p>{{(stage)?.name}}</p>  
+          </ng-template>
+
+          <ng-template #ongoing>
+              <ion-icon item-start name="construct" color="primary"></ion-icon>
+              <ion-note color="primary"><small>ONGOING</small></ion-note>
+              <h2>{{(stage)?.stage}}</h2>
+              <p>{{(stage)?.name}}</p>  
+          </ng-template>
+
+          <ng-template #pending>
+              <ion-icon item-start name="lock" color="dark"></ion-icon>
+              <ion-note color="dark"><small>PENDING</small></ion-note>
+              <h2>{{(stage)?.stage}}</h2>
+              <p>{{(stage)?.name}}</p>    
+          </ng-template>
+          <hr/>
+      </button>
+        
+
+      </ion-list>
+
+    </ion-card-content>
+    </ion-card>
+</div>
+</ion-content>

@@ -1,0 +1,119 @@
+page-home {
+    ion-header{
+        background: none;
+        box-shadow: none;
+    }
+    ion-card{
+        border: 0;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        border-radius: 6px;
+        color: rgba(0,0,0,.87);
+        background: #fff;
+        width: 100%;
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    }
+    .no-projects{
+        margin: 50px 0;
+        color: #999;
+        
+        p ion-icon{
+            font-size: 4rem;
+        }
+    }
+    .new-project{
+        color: #999;
+        h3{
+            color: #999;
+            font-size: 2rem;
+        }
+        border:3px dashed #ddd;
+        padding : 10px;
+        margin: 100px 0 0 0;
+
+        ion-icon{
+            color: #999;
+            font-size: 3rem;
+        }
+    }
+    .info{
+        background: -webkit-linear-gradient(left top, #fff, #e6e6e6); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(bottom right, #fff, #e6e6e6); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(bottom right, #fff, #e6e6e6); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to bottom right, #fff, #e6e6e6); /* Standard syntax */
+
+    }
+    .home-header{
+        background: #333;  /*browsers that do not support gradients */
+        // background: -webkit-linear-gradient(left top, #844C8D, #332D5B); /* For Safari 5.1 to 6.0 */
+        // background: -o-linear-gradient(bottom right, #844C8D, #332D5B); /* For Opera 11.1 to 12.0 */
+        // background: -moz-linear-gradient(bottom right, #844C8D, #332D5B); /* For Firefox 3.6 to 15 */
+        // background: linear-gradient(to bottom right, #844C8D, #332D5B); /* Standard syntax */
+        background-image: url("../assets/img/home-info.jpg");
+        //background-position: bottom;
+        background-size: cover;
+        padding: 40px 20px 90px 20px;   
+        text-align: center;
+        color: #fff;
+        margin-bottom: -50px;
+        text-shadow: 1px 1px 3px #000;
+    }
+    .card-with-bg {
+        ion-card {
+//            position: relative;
+            text-align: left;
+        }
+
+        .card-title {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            font-size: 1.2em;
+            width: 100%;
+            color: #fff;
+        }
+
+        .card-subtitle {
+            font-size: 1.0em;
+            position: absolute;
+            top: 45%;
+            left: 10%;
+            width: 100%;
+            color: #fff;
+        }
+
+        }
+        ion-list ion-item{
+            border-bottom: 1px solid #ddd !important;
+        }
+}
+.bg-card{
+    padding: 40px 20px;
+    background-position: 50%;
+    background-size: stretch;
+    background-repeat: no-repeat;
+    text-align: center;
+    color: #333;
+//    border-radius: 6px;
+    height: 200px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    ion-icon{
+        font-size: 3em;
+    }
+       .card-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .card-subtitle {
+            font-size: 1.0em;
+        }
+
+}
+
+page-home .home-bg{
+    background-image: url("../assets/img/home-bg2.png") ;
+    background-repeat: repeat-x;
+    color: #333;
+    background-size: contain;
+} 

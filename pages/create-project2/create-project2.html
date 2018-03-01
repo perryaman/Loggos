@@ -1,0 +1,80 @@
+<!--
+  Generated template for the CreateProject2Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Create a Project</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+<div col-lg-10 style="margin: 0 auto">
+ <div padding>
+      <h1>New Project</h1>
+      <h5 >STEP 2 of 2</h5>
+        <p >Project Questionnaire.</p>  
+        <p>Please fill in this information to get started on your project.</p>
+    </div>
+
+<ion-card>
+  <ion-card-content>
+      <form [formGroup]="projectQtnForm" (submit)="saveProjectQtn()" novalidate>
+
+        <ion-item>
+          <ion-label stacked>Do you have an existing logo for your brand?</ion-label>
+          <ion-input formControlName="qtn1" type="text" placeholder="Answer here..."
+            [class.invalid]="!projectQtnForm.controls.qtn1.valid && projectQtnForm.controls.qtn1.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!projectQtnForm.controls.qtn1.valid  && projectQtnForm.controls.qtn1.dirty">
+          <p>Please enter a valid answer.</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Do you have any past research on your consumers or customers?</ion-label>
+          <ion-input formControlName="qtn2" type="text" placeholder="Answer here..."
+            [class.invalid]="!projectQtnForm.controls.qtn2.valid && projectQtnForm.controls.qtn2.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!projectQtnForm.controls.qtn2.valid  && projectQtnForm.controls.qtn2.dirty">
+          <p>Please enter a valid answer.</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Do you have any past research on your category or product class?</ion-label>
+          <ion-input formControlName="qtn3" type="text" placeholder="Answer here..."
+            [class.invalid]="!projectQtnForm.controls.qtn3.valid && projectQtnForm.controls.qtn3.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!projectQtnForm.controls.qtn3.valid  && projectQtnForm.controls.qtn3.dirty">
+          <p>Please enter a valid answer.</p>
+        </ion-item>
+<hr/>
+<h3>Payment Details</h3>
+        <ion-item>
+          <ion-label stacked>Bank Name</ion-label>
+          <ion-input  type="text" placeholder="Answer here..."></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Bank Account Name</ion-label>
+          <ion-input  type="text" placeholder="Answer here..."></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Bank Account number</ion-label>
+          <ion-input  type="text" placeholder="Answer here..."></ion-input>
+        </ion-item>
+
+    <button ion-button large type="submit">
+      Save Your Info
+    </button>
+
+  </form>
+
+  </ion-card-content>
+</ion-card>
+
+</div>
+</ion-content>

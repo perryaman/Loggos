@@ -1,0 +1,21 @@
+// Open Sans Font
+// Google
+// Apache License, version 2.0
+// http://www.apache.org/licenses/LICENSE-2.0.html
+
+$open-sans-font-path: $font-path !default;
+
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Open Sans Light"), local("Open-Sans-Light"), url("#{$open-sans-font-path}/open-sans-light.woff2") format("woff2"), url("#{$open-sans-font-path}/open-sans-light.woff") format("woff"), url("#{$open-sans-font-path}/open-sans-light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Open Sans"), local("Open-Sans-Regular"), url("#{$open-sans-font-path}/open-sans-regular.woff2") format("woff2"), url("#{$open-sans-font-path}/open-sans-regular.woff") format("woff"), url("#{$open-sans-font-path}/open-sans-regular.ttf") format("truetype");
+}
+

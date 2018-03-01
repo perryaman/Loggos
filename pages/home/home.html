@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-navbar style="">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img src="assets/img/logo-small.png"  height="20px" alt="">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <div class="home-header">
+    <div *ngIf="(userInfo | async)?.name; then showName else showEmail"></div>
+
+    <ng-template #showName>
+      <h2>Welcome  {{(userInfo | async)?.name}}</h2></ng-template>
+    <ng-template #showEmail>    
+      <h2>Welcome {{user.email}} </h2></ng-template>
+    <p>Your Loggos+Plus Dashboard</p>
+    <p>&nbsp;</p>
+  </div>
+
+<!--<ion-grid class="home-bg" >
+  <ion-row>
+    <ion-col col-12 text-center>
+      <div *ngIf="(userInfo | async)?.name; then showName else showEmail"></div>
+
+      <ng-template #showName>     <p>&nbsp;</p>
+     <p>&nbsp;</p><h2>Welcome  {{(userInfo | async)?.name}}</h2></ng-template>
+      <ng-template #showEmail>     <p>&nbsp;</p>
+     <p>&nbsp;</p><h2>Welcome {{user.email}} </h2></ng-template>
+
+      <p>The Loggos+Plus app helps you manage the development of your branding.</p>
+     <p>&nbsp;</p>
+    </ion-col>
+  </ion-row>
+</ion-grid>-->
+
+<div col-lg-10 style="margin: 0 auto">
+<ion-card class="info">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 text-center>
+        <p>PROJECTS</p>
+        <h1>{{(projects | async)?.length}}</h1>
+      </ion-col>
+      <ion-col  col-6 text-center>
+        <p>MESSAGES</p>
+        <h1>0</h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+           
+
+<ion-grid no-padding>
+  <ion-row>
+    
+    <ion-col col-6 col-lg-6 col-xl-4>
+        <a href="#">
+          <ion-card (click)="openAllProjects()" class="bg-card" style="">          
+            <ion-icon name="image" item-left></ion-icon> 
+            <div class="card-title">My Projects</div>
+            <div class="card-subtitle">All your projects</div>
+          </ion-card>
+        </a>
+    </ion-col>
+    <ion-col col-6 col-lg-6 col-xl-4>
+        <ion-card class="bg-card" style="">          
+           <ion-icon name="cash" item-left></ion-icon> 
+           <div class="card-title">My Payments</div>
+           <div class="card-subtitle">Your financials in one place</div>
+        </ion-card>
+    </ion-col>
+
+    <ion-col col-6 col-lg-6 col-xl-4>
+         <ion-card class="bg-card" style=" ">          
+          <ion-icon name="images" item-left></ion-icon> 
+          <div class="card-title">Featured Content</div>
+          <div class="card-subtitle">The best recent projects</div>
+        </ion-card>
+    </ion-col>
+    <ion-col col-6 col-lg-6 col-xl-4>
+        <ion-card class="bg-card" style=" ">          
+          <ion-icon name="pricetags" item-left></ion-icon> 
+          <div class="card-title">Offers and Discounts</div>
+          <div class="card-subtitle">The best recent projects</div>
+        </ion-card>
+    </ion-col>
+    
+        
+  </ion-row>
+</ion-grid>
+</div>
+
+
+ <div style="height:40px"></div>
+      
+
+    
+
+</ion-content>

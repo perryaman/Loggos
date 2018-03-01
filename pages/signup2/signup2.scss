@@ -1,0 +1,36 @@
+page-signup2 {
+  ion-content{
+        background-image: url("../assets/img/splash2.png");
+        background-size: cover;
+    }
+    .card-background-page {
+
+  ion-card {
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+    height: 100px;
+  }
+
+  .card-title {
+    position: absolute;
+    top: 16%;
+    left: 5%;
+    font-size: 1.4em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .card-subtitle {
+    font-size: 1.0em;
+    left: 5%;
+    
+    position: absolute;
+    top: 32%;
+    width: 100%;
+    color: #fff;
+  }
+
+}
+}

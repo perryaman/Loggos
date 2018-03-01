@@ -1,0 +1,216 @@
+<ion-header>
+  <ion-navbar style="">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <img src="assets/img/logo-small.png"  height="20px" alt="">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+  <div class="home-header">
+    <div *ngIf="(userInfo | async)?.name; then showName else showEmail"></div>
+
+    <ng-template #showName>
+      <h2>Welcome  {{(userInfo | async)?.name}}</h2></ng-template>
+    <ng-template #showEmail>    
+      <h2>Welcome {{user.email}} </h2></ng-template>
+    <p>Your Loggos+Plus Dashboard</p>
+    <p>&nbsp;</p>
+  </div>
+
+<!--<ion-grid class="home-bg" >
+  <ion-row>
+    <ion-col col-12 text-center>
+      <div *ngIf="(userInfo | async)?.name; then showName else showEmail"></div>
+
+      <ng-template #showName>     <p>&nbsp;</p>
+     <p>&nbsp;</p><h2>Welcome  {{(userInfo | async)?.name}}</h2></ng-template>
+      <ng-template #showEmail>     <p>&nbsp;</p>
+     <p>&nbsp;</p><h2>Welcome {{user.email}} </h2></ng-template>
+
+      <p>The Loggos+Plus app helps you manage the development of your branding.</p>
+     <p>&nbsp;</p>
+    </ion-col>
+  </ion-row>
+</ion-grid>-->
+
+<div col-lg-10 style="margin: 0 auto">
+<ion-card class="info">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 text-center>
+        <p>PROJECTS</p>
+        <h1>{{(projects | async)?.length}}</h1>
+      </ion-col>
+      <ion-col  col-6 text-center>
+        <p>MESSAGES</p>
+        <h1>0</h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+           
+
+<div *ngIf="(userInfo | async)?.role == 'strategist'; then forStrategist else forAllUsers "> </div>
+
+<ng-template #forStrategist>
+  <ion-card>
+    <ion-card-header>RECENT PROJECTS
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list *ngIf="projects">
+        
+        <button ion-item *ngFor="let project of projects | async" (click)="openProjectPage(project.$key)">
+          <h2>{{ project.name }}</h2>
+          <p>{{ project.timestamp | date: 'mediumDate' }} . <span text-uppercase>{{project.package}}</span></p>
+          
+          <hr/>
+        </button>  
+      </ion-list>
+      <button ion-button block icon-left  [navPush]="projectsPage" >
+        <ion-icon name='share-alt'></ion-icon>
+        All Projects
+      </button>
+      <!--<button ion-button icon-left block [navPush]="notificationsPage" disabled>
+        <ion-icon name="mail"></ion-icon>
+        View all Projects
+      </button>        -->
+    </ion-card-content>
+  </ion-card>
+  
+</ng-template>
+
+<ng-template #forAllUsers>
+
+        <div *ngIf="(projects | async)?.length >0  ; then showProjects else noProjects"></div> 
+        <ng-template #noProjects>
+          
+          <div padding class="no-projects" text-center>
+              <p><ion-icon name="sad" ></ion-icon></p>
+              <h3>No Projects</h3>
+              <p>Looks like you don't have any projects.</p>
+            
+              <div *ngIf="(userInfo | async)?.role == 'client' "> 
+                <p>You can create one now.</p>
+                <button ion-button  icon-left  [navPush]="createProject1Page" >
+                  <ion-icon name='add'></ion-icon>
+                  Create new project
+                </button>
+              </div>
+
+              <div *ngIf="(userInfo | async)?.role == 'designer' "> 
+                  <p>While you wait to be hired for a project, check out some tutorials.</p>
+                  <div class="card-with-bg">
+                      <ion-card >
+                        <img src="assets/img/home-tutorials3.png"/>
+                        <div class="card-title">Design Tuorials</div>
+                        <div class="card-subtitle">Discover our free design tutorials</div>
+                      </ion-card>
+                    </div>                
+              </div>              
+              
+          </div>
+  
+        </ng-template>
+
+        <ng-template #showProjects>
+        <ion-row>
+          <ion-col col-12 col-lg-6 col-xl-4 *ngFor="let project of projects | async">
+          
+                <ion-card (click)="openProjectPage(project.$key)" >
+                <ion-card-header color="primary">
+                  YOUR PROJECT
+                </ion-card-header>
+                <div style="position: relative">
+                  <img src="assets/img/project-banner.png" alt="">
+                  <ion-fab center middle>
+                    <button ion-fab>
+                      0% 
+                    </button>
+                  </ion-fab>
+                </div>
+                <ion-card-content>
+                    <ion-card-title text-capitalize>
+                      {{project.name}}
+                    </ion-card-title>
+                    <p text-uppercase>
+                      {{project.package}} package
+                    </p>
+
+                      <button ion-button block icon-left>
+                        <ion-icon name='share-alt'></ion-icon>
+                        Open Project
+                      </button>
+                </ion-card-content>
+
+                </ion-card>
+                </ion-col>
+
+               <ion-col col-12 col-lg-6 col-xl-4 >
+                <ion-card (click)="openProjectPage(project.$key)" style="min-height: 410px; padding:20px">
+                <ion-card-content>
+
+                    <div padding class="new-project" text-center [navPush]="createProject1Page" >
+                          <p><ion-icon name="add-circle" large></ion-icon></p>
+                          <h3>New Project</h3>
+                      </div>
+
+                </ion-card-content>
+                </ion-card>
+                </ion-col>
+
+            </ion-row>
+    
+        </ng-template>
+
+</ng-template>
+
+<hr style="margin:30px 0">
+<ion-grid no-padding>
+  <ion-row>
+    
+    <ion-col col-6 col-lg-6 col-xl-4>
+        <ion-card class="bg-card" style="">          
+          <ion-icon name="images" item-left></ion-icon> 
+          <div class="card-title">My Projects</div>
+          <div class="card-subtitle">All your projects</div>
+        </ion-card>
+    </ion-col>
+    <ion-col col-6 col-lg-6 col-xl-4>
+        <ion-card class="bg-card" style="b">          
+           <ion-icon name="cash" item-left></ion-icon> 
+           <div class="card-title">My Payments</div>
+           <div class="card-subtitle">Your financials in one place</div>
+        </ion-card>
+    </ion-col>
+
+    <ion-col col-6 col-lg-6 col-xl-4>
+         <ion-card class="bg-card" style=" ">          
+          <ion-icon name="images" item-left></ion-icon> 
+          <div class="card-title">Featured Content</div>
+          <div class="card-subtitle">The best recent projects</div>
+        </ion-card>
+    </ion-col>
+    <ion-col col-6 col-lg-6 col-xl-4>
+        <ion-card class="bg-card" style="b ">          
+          <ion-icon name="pricetags" item-left></ion-icon> 
+          <div class="card-title">Offers and Discounts</div>
+          <div class="card-subtitle">The best recent projects</div>
+        </ion-card>
+    </ion-col>
+    
+        
+  </ion-row>
+</ion-grid>
+</div>
+
+
+ <div style="height:40px"></div>
+      
+
+    
+
+</ion-content>

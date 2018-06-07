@@ -10,6 +10,13 @@ import * as firebase from 'firebase';
 
 import { Facebook } from '@ionic-native/facebook';
 
+import { FileChooser } from '@ionic-native/file-chooser';
+
+import { Camera} from '@ionic-native/camera';
+
+import { FileTransfer} from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -44,7 +51,12 @@ import { AuthProvider } from '../providers/auth/auth';
 import { ProfileProvider } from '../providers/profile/profile';
 import { MessagingProvider } from '../providers/messaging/messaging';
 import { ProjectsPage } from '../pages/projects/projects';
-
+import { OffersAndDiscountsPage } from '../pages/offers-and-discounts/offers-and-discounts';
+import { NewOfferPage } from '../pages/new-offer/new-offer';
+import { EditOfferPage } from '../pages/edit-offer/edit-offer';
+import {FeaturedContentPage} from '../pages/featured-content/featured-content';
+import {NewContentPage} from '../pages/new-content/new-content';
+import {ContentImagesPage} from '../pages/content-images/content-images';
 
 // AF2 Settings
 export const firebaseConfig = {
@@ -86,6 +98,14 @@ export const firebaseConfig = {
     AddStrategistToProjectPage,
     ChatPage,
     ProjectsPage,
+
+    OffersAndDiscountsPage,
+    NewOfferPage,
+    EditOfferPage,
+    FeaturedContentPage,
+    NewContentPage,
+    ContentImagesPage
+
 //    LoginPage,
    // SignupPage
 
@@ -124,6 +144,14 @@ export const firebaseConfig = {
     ChatPage,
     ProjectsPage,
     SignupStrategist1Page,
+
+    OffersAndDiscountsPage,
+    NewOfferPage,
+    EditOfferPage,
+    FeaturedContentPage,
+    NewContentPage,
+    ContentImagesPage
+
   //  LoginPage,
     //SignupPage
     
@@ -136,7 +164,11 @@ export const firebaseConfig = {
     AuthProvider,
     ProfileProvider,
     Facebook,
-    MessagingProvider
+    MessagingProvider,
+    FileChooser,
+    Camera,
+    FileTransfer,
+    File
   ]
 })
 export class AppModule {}

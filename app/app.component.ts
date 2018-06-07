@@ -52,19 +52,19 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage, icon: 'home' },
-      // { title: 'Notifications', component: NotificationsPage, icon: 'notifications' },
-      // { title: 'Messaging', component: MessagingPage,  icon: 'mail' },
-      // { title: 'Settings', component: SettingsPage, icon: 'settings' },
-      // { title: 'Profile', component: ProfilePage,  icon: 'person' },
-  
-  //       { title: 'DChat', component: ChatPage,  icon: 'cash' },
-     //  { title: 'Create Project', component: CreateProject1Page,  icon: 'cash' },
-      //  { title: 'Help', component: HelpPage,  icon: 'help' },
+      { title: 'Notifications', component: NotificationsPage, icon: 'notifications' },
+      { title: 'Messaging', component: MessagingPage,  icon: 'mail' },
+      { title: 'Settings', component: SettingsPage, icon: 'settings' },
+      { title: 'Profile', component: ProfilePage,  icon: 'person' },
+
+        { title: 'DChat', component: ChatPage,  icon: 'cash' },
+      { title: 'Create Project', component: CreateProject1Page,  icon: 'cash' },
+       { title: 'Help', component: HelpPage,  icon: 'help' },
       // { title: 'Qtn', component: DesignerQtnPage,  icon: 'help' },
-      
+
     ];
     this.user = ".";
-    
+
 
   }
 
@@ -86,6 +86,6 @@ export class MyApp {
   logout(){
     this.authProvider.logoutUser();
     this.nav.setRoot(IntroPage);
-    
+
   }
 }

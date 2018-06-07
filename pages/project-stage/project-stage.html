@@ -6,9 +6,9 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{(stage)?.stage}}</ion-title>
-  </ion-navbar>
+<ion-navbar>
+<ion-title>{{(stage)?.stage}}</ion-title>
+</ion-navbar>
 </ion-header>
 
 
@@ -16,70 +16,109 @@
 
 
 <div padding>
-<h4>{{(stage)?.name}}</h4>
+  <h4>{{(stage)?.name}}</h4>
   <p><i>{{(stage)?.description}}</i></p>
 
 </div>
-  
-<ion-card>
-  <ion-card-header>
-    DELIVERABLES <hr>
-  </ion-card-header>
-  <ion-card-content>
-    <a *ngFor="let deliverable of (stage)?.deliverables " ion-item (click)="downloadFile(file)" >
-      <p *ngIf="deliverable != null;">
-      {{deliverable.name}}
-      </p>
-    </a>
 
-  </ion-card-content>
+<ion-card>
+<ion-card-header *ngIf="deliverables">
+DELIVERABLES <hr>
+</ion-card-header>
+
+</ion-card>
+
+
+<!-- DELIVERABLES -->
+<ion-card *ngFor="let deliverable of deliverables | async" >
+
+<ion-card-content  *ngIf="!isClient">
+
+ <ion-item>
+   <button ion-button small item-end (click)="downloadFile(deliverable)">
+    <ion-icon name="download" small></ion-icon>
+  </button>
+ </ion-item>
+
+<img  src="{{deliverable.url}}" width="100%" height="auto">
+
+<ion-item *ngIf="!deliverable.active">
+  <button ion-button small item-right (click)="validateDeliverable(deliverable)">Validate</button>
+</ion-item>
+
+</ion-card-content>
+
 </ion-card>
 
 
 
- <ion-card >
-    <ion-card-header>
-        COMMENTS <hr>
-    </ion-card-header>       
-     <div *ngIf="(comments )?.length > 0; else noComments" padding>
-        <ion-grid *ngFor="let comment of comments">
-          <ion-row>
-            <ion-col col-12><h2>{{comment.name}}</h2></ion-col>
-          </ion-row>
-           <ion-row>
-            <ion-col col-12>{{comment.body}}</ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col col-12 style="color: #808080"> Posted on {{comment.timestamp | date: 'medium'}}
-          <hr>
-            
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-     </div>
-     <ng-template #noComments>
-       <ion-grid>
-          <ion-row>
-            <ion-col col-12 padding><i  style="color: #808080">No Comments to Display</i></ion-col>
-          </ion-row>
-       </ion-grid>
-    </ng-template>    
- </ion-card>
+<!-- Deliverables to show to the client -->
+<ion-card *ngFor="let deliverable of deliverables | async" >
+
+<ion-card-content  *ngIf="isClient && deliverable.active == true">
+
+ <ion-item>
+   <button ion-button small item-end (click)="downloadFile(deliverable)">
+    <ion-icon name="download" small></ion-icon>
+  </button>
+ </ion-item>
+
+<img  src="{{deliverable.url}}" width="100%" height="auto">
+
+</ion-card-content>
+
+</ion-card>
+
+
+
+<ion-card >
+<ion-card-header>
+COMMENTS <hr>
+</ion-card-header>       
+<div *ngIf="(comments )?.length > 0; else noComments" padding>
+  <ion-grid *ngFor="let comment of comments">
+  <ion-row>
+  <ion-col col-12><h2>{{comment.name}}</h2></ion-col>
+</ion-row>
+<ion-row>
+<ion-col col-12>{{comment.body}}</ion-col>
+</ion-row>
+<ion-row>
+<ion-col col-12 style="color: #808080"> Posted on {{comment.timestamp | date: 'medium'}}
+<hr>
+
+</ion-col>
+</ion-row>
+</ion-grid>
+</div>
+<ng-template #noComments>
+<ion-grid>
+<ion-row>
+<ion-col col-12 padding><i  style="color: #808080">No Comments to Display</i></ion-col>
+</ion-row>
+</ion-grid>
+</ng-template>    
+</ion-card>
 
 <ion-card padding>
-  <form [formGroup]="commentForm" (submit)="saveComment()" novalidate>
-    <ion-item>
-      <ion-label stacked>Add a comment: </ion-label>
-      <ion-input formControlName="comment" type="text" placeholder="Your comment..."
-        [class.invalid]="!commentForm.controls.comment.valid && commentForm.controls.comment.dirty"></ion-input>
-    </ion-item>
-    <button block ion-button icon-right padding type="submit">
-      Post Comment
-      <ion-icon name="arrow-forward"></ion-icon> 
-    </button>
-  </form>
+
+
+<form [formGroup]="commentForm" (submit)="saveComment()" novalidate>
+  <ion-item>
+  <ion-label stacked>Add a comment: </ion-label>
+  <ion-input formControlName="comment" type="text" placeholder="Your comment..."
+  [class.invalid]="!commentForm.controls.comment.valid && commentForm.controls.comment.dirty"></ion-input>
+</ion-item>
+<button block ion-button icon-right padding type="submit">
+  Post Comment
+  <ion-icon name="arrow-forward"></ion-icon> 
+</button>
+</form>
+
+<button *ngIf="!isClient" ion-button full (click)="addDeliverable()">Add deliverable</button>
+
 </ion-card>  
 
-  
+
 
 </ion-content>

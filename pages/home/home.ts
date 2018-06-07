@@ -12,6 +12,8 @@ import {CreateProject1Page} from '../create-project1/create-project1';
 import {ProjectsPage} from '../projects/projects';
 import {MessagingPage} from '../messaging/messaging';
 import {HelpPage} from '../help/help';
+import {OffersAndDiscountsPage} from '../offers-and-discounts/offers-and-discounts';
+import {FeaturedContentPage} from '../featured-content/featured-content';
 
 @Component({
   selector: 'page-home',
@@ -23,6 +25,7 @@ export class HomePage {
     notificationsPage = NotificationsPage;
     messagingPage = MessagingPage;
     helpPage = HelpPage;
+    offersPage = OffersAndDiscountsPage;
     //get  logged in user
     user =  firebase.auth().currentUser;    
     userInfo : FirebaseObjectObservable<any>;
@@ -86,6 +89,15 @@ export class HomePage {
   openAllProjects(){
     this.navCtrl.push(ProjectsPage);
   }
+
+  openOffers(){
+    this.navCtrl.push(OffersAndDiscountsPage);
+  }
+
+  openContents(){
+    this.navCtrl.push(FeaturedContentPage);
+  }
+
   getActivities(db:any, projects:any){
     //get a list of activities that have happend recently
     //activity is any action taken on a project and is recorded

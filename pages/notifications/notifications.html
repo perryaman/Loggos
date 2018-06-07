@@ -18,6 +18,7 @@
 
 
 <ion-content padding>
+
    <!--<div *ngIf="(chats | async)?.length > 0; then hasChats else noChats"></div>-->
    <div *ngIf="0 > 1; then hasChats else noChats"></div>
 
@@ -25,16 +26,23 @@
       <ion-list>
         <button ion-item *ngFor="let chat of chats | async" (click)="openchatPage(chat.$key)">
             {{ chat.users | json }}
-        </button> 
+        </button>
 
       </ion-list> 
     </ng-template>
   
-  <ng-template #noChats>
+  <div *ngIf="!notifications">
     <div padding class="no-messages" text-center>
       <p><ion-icon name="notifications" ></ion-icon></p>
       <h3>Nothing to show</h3>
       <p>You don't have any notifications at the moment.</p>
       </div>
-  </ng-template>
+  </div>
+
+  <ion-card ion-item (click)="openOffers()" *ngFor="let offer of offers | async">
+        <h6 ion-text color="">Offers and discounts</h6>
+        <h4 ion-text class="title">{{offer.title }}</h4>
+        <span ion-text color="primary" class="date">{{offer.date | slice:0:11 }}</span>
+    </ion-card> 
+
 </ion-content>
